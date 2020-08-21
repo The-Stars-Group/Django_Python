@@ -1,37 +1,51 @@
-# from django.db import models
+from django.db import models
+from django.contrib.auth.models import User
+from kiosk.models import Kiosk
 
-# # Create your models here.
-# from django.db import models
-# from django.contrib.auth.models import User
-# # Create your models here.
-# class ProductSuppliier(models.Model):
+# Create your models here.
+class ProductSupplier(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    email = models.EmailField()
+    street_address = models.CharField(max_length=150)
+    phone_number = models.IntegerField()
+    id_number = models.IntegerField()
+    date_added = models.DateTimeField()
+    profile_picture = models.ImageField()
 
-#     user = models.OneToOneField(User, on_delete=models.CASCADE)
-#     email_address = models.EmailField()
-#     phone_number = models.IntegerField()
-#     date_added = models.DateField()
-#     id_number = models.IntegerField()
-#     profile_picture = models.ImageField()
+    def __str__(self):
+        return self.adress
 
-    
-#     class ProductCategory(models.Model):
+class ProductCategory(models.Model):
+    name = models.CharField(max_length=30)
+    description = models.TextField()
+    icon = models.ImageField()
 
-#     name= models.CharField()
-#     description = models.EmailField()
-#     icon = models.ImageField()
+    def __str__(self):
+        return self.name
 
+class Product(models.Model):
+    title = models.CharField(max_length=20)
+    category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE)
+    description = models.TextField()
+    supplier_price = models.DecimalField(max_digits=8, decimal_places=4)
+    selling_price = models.DecimalField(max_digits=5, decimal_places=3)
+    supplier = models.ForeignKey(ProductSupplier, on_delete=models.CASCADE)
+    kiosk = models.ForeignKey(Kiosk, on_delete=models.CASCADE)
+    number_in_stock = models.IntegerField()
 
-# class Product(models.Model):
+    def __str__(self):
+        return self.title
 
-#     user = models.OneToOneField(User, on_delete=models.CASCADE)
-#     title = models.CharField()
-#     category = models.ProductCategory()
-#     description= models.TextField()
-#     supplier_price = models.DecimalField()
-#     selling_price = models.DecimalField()
-#     supplier = models.ProductSupplier()
-#     date_added = models.DateField()
-#     id_number = models.IntegerField()
-#     profile_picture = models.ImageField()
-#     kiosk = models.Kiosk()
-#     number_in_stock = models.IntegerField()
+class productImage(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    image = models.ImageField()
+
+    def __str__(self):
+        return self.product
+
+class ProductReview(models.Model):
+    product = models.ForeignKey(Product,on_delete=models.CASCADE)
+    review = models.TextField()
+
+    def __str__(self):
+        return self.review

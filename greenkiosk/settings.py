@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'kiosk',
     'customers',
     'shopping',
+    'shipping',
+    'catalog',
 ]
 
 MIDDLEWARE = [
