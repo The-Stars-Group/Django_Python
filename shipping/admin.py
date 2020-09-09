@@ -1,9 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import ShippingProvider, DispenseCoolerBox, Delivery
-# Register your models here.
-
-admin.site.register(ShippingProvider)
-admin.site.register(DispenseCoolerBox)
+from .models import ShippingProvider, DispenserCoolerBox, Delivery
+admin.site.register(DispenserCoolerBox)
 admin.site.register(Delivery)
+admin.site.register(ShippingProvider)

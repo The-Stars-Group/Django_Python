@@ -13,7 +13,7 @@ class ProductSupplier(models.Model):
     profile_picture = models.ImageField()
 
     def __str__(self):
-        return self.adress
+        return self.user.get_full_name()
 
 class ProductCategory(models.Model):
     name = models.CharField(max_length=30)
@@ -32,16 +32,11 @@ class Product(models.Model):
     supplier = models.ForeignKey(ProductSupplier, on_delete=models.CASCADE)
     kiosk = models.ForeignKey(Kiosk, on_delete=models.CASCADE)
     number_in_stock = models.IntegerField()
+    product_image = models.ImageField(upload_to='images')
 
     def __str__(self):
         return self.title
 
-class productImage(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    image = models.ImageField()
-
-    def __str__(self):
-        return self.product
 
 class ProductReview(models.Model):
     product = models.ForeignKey(Product,on_delete=models.CASCADE)
