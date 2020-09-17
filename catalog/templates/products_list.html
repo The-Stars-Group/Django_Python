@@ -1,5 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title></title>
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body>
 {% for product in products %}
-<img src="{{product.product_image.url}}">
-    <h3>{{ product.title }} - {{product.kiosk.currency}}{{product.selling_price}}</h3>
+<div class="box">
+    <ul>
+<img src="{{product.product_image.url}}"/>
+<p><a href ="/products/{{product.id}}/">{{product.title}} {{product.selling_price}} </a></p>
+<br>
+<p>{{ product.description}}</p>
+
+    <li>{{ product.title }}</li>
+    <li>{{product.kiosk.currency}}</li>
+    <li>{{product.selling_price}}</li>
     <p> {{ product.description }} </p>
+    </ul>
 {% endfor %}
+
+</div>
+</body>
+<style>
+    .box{
+        display: flex;
+    }
+    ul,li{
+        list-style-type: none;
+    }
+</style>
+
+
+
+</html>
