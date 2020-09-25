@@ -1,7 +1,7 @@
 from django import forms
-from .models import Product
+from .models import Kiosk
 
-class ProductForm(forms.ModelForm):
+class KioskForm(forms.ModelForm):
     class Meta:
-        model = Product
+        model = Kiosk
         fields = '__all__'
