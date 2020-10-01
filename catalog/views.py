@@ -23,3 +23,21 @@ def upload_product(request):
     else:
        form = ProductForm()
        return render(request, 'upload_product.html', {'form':form})
+
+
+       def add_to_cart(self, book_id):
+        book = Book.objects.get(pk=book_id)
+        try:
+            preexisting_order = BookOrder.objects.get(book=book, cart=self)
+            preexisting_order.quantity += 1
+            preexisting_order.save()
+        except BookOrder.DoesNotExist:
+            new_order = BookOrder.objects.create(
+                book=book,
+                cart=self,
+                quantity=1
+                )
+            new_order.save()
+
+            def __unicode__(self):
+                return "%s" % (self.book_id)

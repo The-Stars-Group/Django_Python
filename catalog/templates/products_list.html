@@ -19,6 +19,12 @@
 <p><a href ="/products/{{product.id}}/"> {{product.selling_price}} </a></p>
 <p><a href ="/products/{{product.id}}/"> {{product.description}} </a></p>
 <button class="btn">Add to Cart</button>
+{% if request.user.is_authenticated %}
+         <span class="storefront_add_to_cart">
+             
+         </span>
+         {% endif %}
+
     </ul>
     </div>
 {% endfor %}

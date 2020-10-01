@@ -16,6 +16,8 @@ class Cart(models.Model):
 
     def __str__(self):
         return self.cart()
+    
+    
 
 class Payment(models.Model):
    custom= models.ForeignKey(Customer, on_delete=models.CASCADE)
